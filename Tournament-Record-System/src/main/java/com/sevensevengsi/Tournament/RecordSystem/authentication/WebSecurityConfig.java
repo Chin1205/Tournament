@@ -39,6 +39,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/team").hasAnyRole("ADMIN", "MANAGER")
+                .antMatchers("/tournament").hasAnyRole("ADMIN", "MANAGER", "FAN")
+                .antMatchers("/game").hasRole("ADMIN")
+                .antMatchers("/page/manager").hasRole("MANAGER")
+                .antMatchers("/page/official").hasRole("OFFICIAL")
+                .antMatchers("/page/admin").hasRole("ADMIN")
+                .antMatchers("/page/fan").hasRole("FAN")
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
+                .permitAll()
+                .defaultSuccessUrl("/home")
+                .and()
+                .logout().logoutSuccessUrl("/login")
+                .and()
+                .exceptionHandling().accessDeniedPage("/access_denied");
+      /*  http.authorizeRequests().antMatchers("/api/**").permitAll()
                 .antMatchers("/page/manager").hasRole("MANAGER")
                 .antMatchers("/page/official").hasRole("OFFICIAL")
                 .antMatchers("/page/admin").hasRole("ADMIN")
@@ -49,6 +67,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .logout()
                 .and()
-                .exceptionHandling().accessDeniedPage("/access-denied");
+                .exceptionHandling().accessDeniedPage("/access-denied");*/
     }
 }
