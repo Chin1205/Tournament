@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet"
+        href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css"/>
+  <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.js"></script>
+  <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+  <script
+          src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <title>Edit Game</title>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<form th:action="@{/games/updateAction}" method="post"
+      th:object="${games}">
+  <div class="justify-center">
+    <label
+            class="block text-[#101010] text-2xl font-bold md:text-center mb-1 mr-6 md:mb-0 pr-6">
+      Game Form </label>
+  </div>
+  <div>
+    <input
+           class="p-1 px-2 appearance-none outline-none w-full text-gray-800 "
+           type="text" th:field="*{game_id}" hidden />
+
+    <div
+            class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Category</div>
+    <div class="flex flex-col md:flex-row">
+      <div class="w-full flex-1 mx-2 svelte-1l8159u">
+        <div
+                class="bg-white my-2 p-1 flex border border-gray-200 rounded svelte-1l8159u">
+          <input placeholder="Category"
+                 class="p-1 px-2 appearance-none outline-none w-full text-gray-800 "
+                 type="text" th:field="*{category}" />
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="flex p-2 mt-4">
+    <div class="flex-auto flex flex-row-reverse">
+      <button
+              class="text-base w-40  ml-2  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer
+		bg-[#46bb91]
+        hover:bg-[#368e6e]
+        text-white
+        border duration-200 ease-in-out
+        border- bg-[#46bb91] transition"
+              type="submit">Submit</button>
+
+    </div>
+  </div>
+</form>
+
+</body>
+</html>

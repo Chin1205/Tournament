@@ -1,16 +1,16 @@
 package com.sevensevengsi.Tournament.RecordSystem.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "game")
 public class Game {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int game_id;
 
+    @Column(name = "category")
     private String category;
 
     public int getGame_id() {
@@ -36,4 +36,8 @@ public class Game {
         this.category = category;
     }
 
+    @Override
+    public String toString() {
+        return "Game [id=" + game_id + ", category=" + category + "]";
+    }
 }

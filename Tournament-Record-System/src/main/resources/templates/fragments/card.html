@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet"
+        href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
+  <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.js"></script>
+  <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+  <script
+          src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>Tournament Record System</title>
+</head>
+<body>
+<div th:fragment="card">
+  <div class="mx-auto right-0 mt-2 w-4/5">
+    <div class="rounded overflow-hidden shadow-lg">
+      <div class="text-center p-6 bg-gray-800 border-b">
+        <div class="flex justify-center">
+        </div>
+      </div>
+      <div class="border-b px-5 py-4">
+        <a class="px-4 py-2 hover:bg-gray-100 flex">
+          <div class="pl-3">
+            <p class="text-base font-medium text-gray-800 leading-none">
+              Game ID: <span class="text-sm text-sky-500 ml-2"
+                                    th:text="${game.game_id}"></span>
+            </p>
+          </div>
+        </a> <a class="px-4 py-2 hover:bg-gray-100 flex">
+        <div class="pl-3">
+          <p class="text-base font-medium text-gray-800 leading-none">
+            Game Category: <span class="text-sm text-gray-500 ml-2"
+                                    th:text="${game.category}"></span>
+          </p>
+        </div>
+      </a>
+      </div>
+      <div class="flex justify-end">
+        <a class="px-3 py-3 hover:bg-gray-100 flex">
+          <div class="pl-3">
+            <form
+                    th:action="@{/games/update/} + ${game.game_id}"
+                    method="post" th:object="${games}">
+              <button type="submit"
+                      class="flex w-full text-red-600 hover:text-white hover:border-none border border-gray-600 hover:bg-red-600  focus:outline-none  font-medium rounded-lg text-sm px-3 py-2 text-center mr-2">
+
+                <span class="uppercase ml-2">Edit</span>
+              </button>
+            </form>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+</body>
+</html>

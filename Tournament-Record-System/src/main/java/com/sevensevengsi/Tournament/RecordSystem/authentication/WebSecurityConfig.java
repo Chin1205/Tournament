@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -51,11 +52,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .formLogin()
                 .permitAll()
-                .defaultSuccessUrl("/home")
+               .defaultSuccessUrl("/home").and()
+               .logout().logoutSuccessUrl("/login")
                 .and()
-                .logout().logoutSuccessUrl("/login")
-                .and()
-                .exceptionHandling().accessDeniedPage("/access_denied");
+               .exceptionHandling().accessDeniedPage("/access_denied");
       /*  http.authorizeRequests().antMatchers("/api/**").permitAll()
                 .antMatchers("/page/manager").hasRole("MANAGER")
                 .antMatchers("/page/official").hasRole("OFFICIAL")
